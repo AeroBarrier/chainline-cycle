@@ -1,70 +1,38 @@
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock, ExternalLink } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer style={{ background: "var(--color-bg)", borderTop: "1px solid rgba(245,240,235,0.06)" }}>
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div>
+    <footer style={{ borderTop: "1px solid rgba(245,240,235,0.04)" }}>
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 py-16">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 mb-14">
+          <div className="col-span-2 sm:col-span-1">
             <Link href="/" className="font-[family-name:var(--font-instrument-serif)] text-2xl tracking-tight">
               Chain<span className="text-[var(--color-accent)]">Line</span>
             </Link>
-            <p className="mt-3 text-sm leading-relaxed" style={{ color: "rgba(245,240,235,0.45)" }}>
-              Rider-owned since 2009. 100+ years combined wrench experience. Kelowna&apos;s bike shop.
+            <p className="mt-3 text-[13px] leading-relaxed max-w-[240px]" style={{ color: "rgba(245,240,235,0.35)" }}>
+              Rider-owned since 2009. Kelowna&apos;s bike shop.
             </p>
-            <a href="https://www.instagram.com/chainline_cycle_kelowna/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 mt-4 text-sm transition-colors hover:text-[var(--color-accent)]" style={{ color: "rgba(245,240,235,0.5)" }}>
-              <ExternalLink className="w-4 h-4" /> @chainline_cycle_kelowna
-            </a>
           </div>
-
-          {/* Shop */}
-          <div>
-            <h3 className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-accent)] mb-4">Shop</h3>
-            <ul className="space-y-2.5">
-              {["Mountain", "Road", "Gravel", "Sale Bikes", "Used Bikes", "Trade-In"].map((item) => (
-                <li key={item}><Link href="/bikes" className="text-sm transition-colors hover:text-white" style={{ color: "rgba(245,240,235,0.5)" }}>{item}</Link></li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Service */}
-          <div>
-            <h3 className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-accent)] mb-4">Service</h3>
-            <ul className="space-y-2.5">
-              {["Tune-Up", "Full Service", "Bike Fit", "Wheel Build", "Suspension"].map((item) => (
-                <li key={item}><Link href="/service" className="text-sm transition-colors hover:text-white" style={{ color: "rgba(245,240,235,0.5)" }}>{item}</Link></li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-accent)] mb-4">Visit</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "rgba(245,240,235,0.3)" }} />
-                <span className="text-sm" style={{ color: "rgba(245,240,235,0.5)" }}>1139 Ellis St<br />Kelowna, BC V1Y 1Z5</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 shrink-0" style={{ color: "rgba(245,240,235,0.3)" }} />
-                <a href="tel:2508601968" className="text-sm transition-colors hover:text-white" style={{ color: "rgba(245,240,235,0.5)" }}>(250) 860-1968</a>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 shrink-0" style={{ color: "rgba(245,240,235,0.3)" }} />
-                <a href="mailto:bikes@chainline.ca" className="text-sm transition-colors hover:text-white" style={{ color: "rgba(245,240,235,0.5)" }}>bikes@chainline.ca</a>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <Clock className="w-4 h-4 mt-0.5 shrink-0" style={{ color: "rgba(245,240,235,0.3)" }} />
-                <span className="text-sm" style={{ color: "rgba(245,240,235,0.5)" }}>Mon 10-5 &middot; Tue-Fri 9:30-5:30<br />Sat 10-4 &middot; Sun Closed</span>
-              </li>
-            </ul>
-          </div>
+          {[
+            { title: "Shop", links: [{ label: "All Bikes", href: "/bikes" }, { label: "Sale", href: "/sale" }, { label: "Used Bikes", href: "/used-bikes" }, { label: "Trade-In", href: "/trade-in" }] },
+            { title: "Service", links: [{ label: "Full Menu", href: "/service" }, { label: "Bike Fit", href: "/service" }, { label: "Trail Guide", href: "/trails" }] },
+            { title: "Info", links: [{ label: "About", href: "/about" }, { label: "Contact", href: "/contact" }, { label: "Instagram", href: "https://www.instagram.com/chainline_cycle_kelowna/" }] },
+          ].map((col) => (
+            <div key={col.title}>
+              <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-[var(--color-accent)] mb-4">{col.title}</p>
+              <ul className="space-y-2.5">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} className="text-[13px] transition-colors hover:text-[var(--color-fg)]" style={{ color: "rgba(245,240,235,0.35)" }}>{link.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-
-        <div className="mt-12 pt-6" style={{ borderTop: "1px solid rgba(245,240,235,0.06)" }}>
-          <p className="text-xs" style={{ color: "rgba(245,240,235,0.25)" }}>&copy; {new Date().getFullYear()} ChainLine Cycle &middot; 1139 Ellis St, Kelowna, BC</p>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6" style={{ borderTop: "1px solid rgba(245,240,235,0.04)" }}>
+          <p className="text-[11px]" style={{ color: "rgba(245,240,235,0.2)" }}>&copy; {new Date().getFullYear()} ChainLine Cycle &middot; 1139 Ellis St, Kelowna, BC</p>
+          <p className="text-[11px]" style={{ color: "rgba(245,240,235,0.15)" }}>(250) 860-1968 &middot; bikes@chainline.ca</p>
         </div>
       </div>
     </footer>
