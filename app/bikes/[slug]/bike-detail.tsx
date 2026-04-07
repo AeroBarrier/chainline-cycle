@@ -7,6 +7,7 @@ import { useCart } from "@/lib/cart";
 import { BikeCard } from "@/components/bikes/bike-card";
 import type { Bike } from "@/lib/data";
 import type { Accessory } from "@/lib/accessories";
+import { formatFinancing } from "@/lib/financing";
 
 export function BikeDetail({ bike, related, upsells }: { bike: Bike; related: Bike[]; upsells: Accessory[] }) {
   const { addItem } = useCart();
@@ -66,6 +67,9 @@ export function BikeDetail({ bike, related, upsells }: { bike: Bike; related: Bi
                 <span className="font-mono text-2xl font-semibold text-[var(--color-fg)]">${bike.price.toLocaleString()}</span>
               )}
             </div>
+            <p className="text-xs font-mono mb-4" style={{ color: "rgba(245,240,235,0.4)" }}>
+              or {formatFinancing(bike.salePrice || bike.price)} for 24 months with <span className="text-[var(--color-fg)]">Affirm</span>. 0% APR available.
+            </p>
             <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(245,240,235,0.6)" }}>{bike.description}</p>
 
             {bike.teamNote && (

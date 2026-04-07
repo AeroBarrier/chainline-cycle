@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Bike } from "@/lib/data";
+import { formatFinancing } from "@/lib/financing";
 
 export function BikeCard({ bike }: { bike: Bike }) {
   return (
@@ -24,6 +25,9 @@ export function BikeCard({ bike }: { bike: Bike }) {
             <span className="font-mono text-sm font-semibold text-[var(--color-fg)]">${bike.price.toLocaleString()}</span>
           )}
         </div>
+        <p className="text-[10px] font-mono mt-1" style={{ color: "rgba(245,240,235,0.35)" }}>
+          or {formatFinancing(bike.salePrice || bike.price)} for 24 mo
+        </p>
       </div>
     </Link>
   );

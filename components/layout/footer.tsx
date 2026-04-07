@@ -23,7 +23,7 @@ export function Footer() {
           <div>
             <h3 className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-accent)] mb-4">Shop</h3>
             <ul className="space-y-2.5">
-              {["Mountain", "Road", "Gravel", "Sale Bikes"].map((item) => (
+              {["Mountain", "Road", "Gravel", "Sale Bikes", "Used Bikes", "Trade-In"].map((item) => (
                 <li key={item}><Link href="/bikes" className="text-sm transition-colors hover:text-white" style={{ color: "rgba(245,240,235,0.5)" }}>{item}</Link></li>
               ))}
             </ul>

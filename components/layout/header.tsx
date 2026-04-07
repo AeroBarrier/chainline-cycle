@@ -37,6 +37,8 @@ export function Header() {
                       <Link key={d.name} href={d.href} className="block py-1.5 text-sm transition-colors hover:text-white" style={{ color: "rgba(245,240,235,0.6)" }}>{d.name}</Link>
                     ))}
                     <Link href="/sale" className="block py-1.5 text-sm text-[var(--color-accent)] transition-colors hover:opacity-80 mt-2">Sale Bikes</Link>
+                    <Link href="/used-bikes" className="block py-1.5 text-sm transition-colors hover:text-white" style={{ color: "rgba(245,240,235,0.6)" }}>Used Bikes</Link>
+                    <Link href="/trade-in" className="block py-1.5 text-sm transition-colors hover:text-white" style={{ color: "rgba(245,240,235,0.6)" }}>Trade-In Program</Link>
                   </div>
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-accent)] mb-3">By Brand</p>
