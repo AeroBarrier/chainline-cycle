@@ -11,16 +11,18 @@ export function generateStaticParams() {
   return getAllTrails().map((t) => ({ slug: t.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const trail = getTrailBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const trail = getTrailBySlug(slug);
   if (!trail) return {};
   return { title: trail.name, description: `${trail.name}: ${trail.distance}km, ${trail.elevation}m elevation. ${trail.tagline}` };
 }
 
 const difficultyColors: Record<string, string> = { easy: "#4CAF50", moderate: "#FF9800", hard: "#FF5722", expert: "#9C27B0" };
 
-export default function TrailDetailPage({ params }: { params: { slug: string } }) {
-  const trail = getTrailBySlug(params.slug);
+export default async function TrailDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const trail = getTrailBySlug(slug);
   if (!trail) notFound();
 
   const allTrails = getAllTrails();
