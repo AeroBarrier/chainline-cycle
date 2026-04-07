@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { CartProvider } from "@/lib/cart";
+import { CartDrawer } from "@/components/commerce/cart-drawer";
 
 const instrumentSerif = localFont({
   src: [{ path: "../public/fonts/InstrumentSerif-Regular.ttf", weight: "400", style: "normal" }, { path: "../public/fonts/InstrumentSerif-Italic.ttf", weight: "400", style: "italic" }],
@@ -11,17 +13,8 @@ const instrumentSerif = localFont({
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap" });
 
 export const metadata: Metadata = {
   title: { default: "ChainLine Cycle | Kelowna Bike Shop", template: "%s | ChainLine Cycle" },
@@ -34,9 +27,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${instrumentSerif.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-[family-name:var(--font-dm-sans)]">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <CartProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );
