@@ -28,7 +28,7 @@ export function Header() {
   return (
     <>
       <motion.header
-        className="fixed top-0 w-full z-40 transition-all duration-500"
+        className="fixed top-[36px] w-full z-40 transition-all duration-500"
         style={{
           background: scrolled ? "rgba(6,6,6,0.95)" : "transparent",
           backdropFilter: scrolled ? "blur(20px) saturate(180%)" : "none",

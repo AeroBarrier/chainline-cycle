@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { AnnouncementBar } from "@/components/ui/announcement-bar";
+import { NewsletterPopup } from "@/components/ui/newsletter-popup";
 import { CartProvider } from "@/lib/cart";
 import { CartDrawer } from "@/components/commerce/cart-drawer";
 
@@ -12,13 +14,12 @@ const instrumentSerif = localFont({
   variable: "--font-instrument-serif",
   display: "swap",
 });
-
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap" });
 
 export const metadata: Metadata = {
   title: { default: "ChainLine Cycle | Kelowna Bike Shop", template: "%s | ChainLine Cycle" },
-  description: "Rider-owned bike shop in Kelowna, BC. Marin, Transition, Pivot, Surly, Bianchi, Moots, Salsa. Service, custom builds, and 100+ years combined wrench experience.",
+  description: "Rider-owned bike shop in Kelowna, BC. Marin, Bianchi. Service, custom builds, and 100+ years combined wrench experience.",
   metadataBase: new URL("https://chainline-cycle.netlify.app"),
   openGraph: { siteName: "ChainLine Cycle", locale: "en_CA", type: "website" },
 };
@@ -28,10 +29,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${instrumentSerif.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-[family-name:var(--font-dm-sans)]">
         <CartProvider>
+          <AnnouncementBar />
           <Header />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pt-[36px]">{children}</main>
           <Footer />
           <CartDrawer />
+          <NewsletterPopup />
         </CartProvider>
       </body>
     </html>
