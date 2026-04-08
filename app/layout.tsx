@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import { DM_Sans, JetBrains_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Outfit, Space_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CartProvider } from "@/lib/cart";
 import { CartDrawer } from "@/components/commerce/cart-drawer";
 
-const instrumentSerif = localFont({
-  src: [{ path: "../public/fonts/InstrumentSerif-Regular.ttf", weight: "400", style: "normal" }, { path: "../public/fonts/InstrumentSerif-Italic.ttf", weight: "400", style: "italic" }],
-  variable: "--font-instrument-serif",
-  display: "swap",
-});
-const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans", display: "swap" });
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", display: "swap" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair-display", display: "swap" });
+const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit", display: "swap", weight: ["300", "400", "500", "600", "700"] });
+const spaceMono = Space_Mono({ subsets: ["latin"], variable: "--font-space-mono", display: "swap", weight: ["400", "700"] });
 
 export const metadata: Metadata = {
   title: { default: "ChainLine Cycle | Kelowna Bike Shop", template: "%s | ChainLine Cycle" },
@@ -23,8 +18,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${instrumentSerif.variable} ${dmSans.variable} ${jetbrainsMono.variable} h-full`}>
-      <body className="min-h-full flex flex-col font-[family-name:var(--font-dm-sans)] antialiased">
+    <html lang="en" className={`${playfair.variable} ${outfit.variable} ${spaceMono.variable} h-full`}>
+      <body className="min-h-full flex flex-col font-[family-name:var(--font-outfit)] antialiased font-light">
         <CartProvider>
           <Header />
           <main className="flex-1">{children}</main>

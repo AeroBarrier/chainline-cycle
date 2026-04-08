@@ -18,67 +18,55 @@ export function Header() {
   const { itemCount, openCart } = useCart();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
   return (
     <>
       {/* Top bar */}
-      <div className="bg-[var(--color-dark)] text-white/70 text-[11px] text-center py-2 px-4">
-        Free shipping on orders over $150 in BC &nbsp;&middot;&nbsp; <Link href="/trade-in/" className="underline text-white/90 hover:text-white">Trade-in program now open</Link>
+      <div className="bg-[var(--color-hero-bg)] text-center py-2 px-4">
+        <p className="font-[family-name:var(--font-space-mono)] text-[10px] tracking-[0.1em] text-white/50">
+          FREE SHIPPING ON ORDERS OVER $150 IN BC {" \u2022 "} <Link href="/trade-in/" className="underline text-white/70 hover:text-white">TRADE-IN PROGRAM OPEN</Link>
+        </p>
       </div>
 
-      <header className={`sticky top-0 z-40 transition-shadow duration-300 ${scrolled ? "shadow-sm" : ""}`} style={{ background: "var(--color-bg)", borderBottom: "1px solid var(--color-border)" }}>
-        <div className="max-w-7xl mx-auto px-5 sm:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
-            <Link href="/" className="font-[family-name:var(--font-instrument-serif)] text-[22px] tracking-tight text-[var(--color-fg)]">
+      <header className={`sticky top-0 z-40 bg-[var(--color-bg)] transition-shadow duration-300 ${scrolled ? "shadow-[0_1px_12px_rgba(0,0,0,0.06)]" : ""}`} style={{ borderBottom: "1px solid var(--color-border)" }}>
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8">
+          <div className="flex items-center justify-between h-[60px]">
+            <Link href="/" className="font-[family-name:var(--font-playfair-display)] text-[22px] tracking-[-0.02em] text-[var(--color-fg)]">
               Chain<span className="text-[var(--color-accent)]">Line</span>
             </Link>
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-7">
+            <nav className="hidden lg:flex items-center gap-8">
               {nav.map((item) => (
-                <Link key={item.href} href={item.href} className="text-[13px] font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors">
+                <Link key={item.href} href={item.href} className="text-[13px] font-normal text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors tracking-wide">
                   {item.label}
                 </Link>
               ))}
             </nav>
 
-            {/* Right */}
-            <div className="flex items-center gap-1">
-              <a href="tel:2508601968" className="hidden sm:flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors mr-3">
-                <Phone className="w-3.5 h-3.5" /> (250) 860-1968
+            <div className="flex items-center gap-1.5">
+              <a href="tel:2508601968" className="hidden md:flex items-center gap-1.5 text-[11px] font-[family-name:var(--font-space-mono)] text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors mr-2">
+                <Phone className="w-3 h-3" /> 250.860.1968
               </a>
-              <button className="p-2 text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors" aria-label="Search">
-                <Search className="w-[18px] h-[18px]" />
+              <button className="p-2 text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors"><Search className="w-[17px] h-[17px]" /></button>
+              <button onClick={openCart} className="relative p-2 text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors">
+                <ShoppingBag className="w-[17px] h-[17px]" />
+                {itemCount > 0 && <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[var(--color-accent)] text-white rounded-full text-[9px] font-bold flex items-center justify-center">{itemCount}</span>}
               </button>
-              <button onClick={openCart} className="relative p-2 text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors" aria-label="Cart">
-                <ShoppingBag className="w-[18px] h-[18px]" />
-                {itemCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[var(--color-accent)] text-white rounded-full text-[9px] font-bold flex items-center justify-center">{itemCount}</span>
-                )}
-              </button>
-              <button className="lg:hidden p-2 text-[var(--color-muted)] hover:text-[var(--color-fg)] transition-colors" onClick={() => setOpen(!open)} aria-label="Menu">
-                {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </button>
+              <button className="lg:hidden p-2 text-[var(--color-muted)]" onClick={() => setOpen(!open)}>{open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}</button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Nav */}
         {open && (
-          <div className="lg:hidden border-t border-[var(--color-border)] bg-[var(--color-bg)]">
-            <div className="px-5 py-4 space-y-1">
-              {nav.map((item) => (
-                <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="block py-2.5 text-[15px] font-medium text-[var(--color-fg)]">
-                  {item.label}
-                </Link>
-              ))}
-              <a href="tel:2508601968" className="block py-2.5 text-[15px] text-[var(--color-accent)]">(250) 860-1968</a>
-            </div>
+          <div className="lg:hidden border-t border-[var(--color-border)] bg-[var(--color-bg)] px-5 py-6 space-y-1">
+            {nav.map((item) => (
+              <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="block py-3 font-[family-name:var(--font-playfair-display)] text-2xl text-[var(--color-fg)]">{item.label}</Link>
+            ))}
+            <a href="tel:2508601968" className="block pt-4 text-[13px] text-[var(--color-accent)]">250.860.1968</a>
           </div>
         )}
       </header>
