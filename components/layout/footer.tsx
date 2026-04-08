@@ -2,37 +2,31 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer style={{ borderTop: "1px solid rgba(245,240,235,0.04)" }}>
-      <div className="max-w-[1400px] mx-auto px-6 sm:px-8 py-16">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 mb-14">
+    <footer className="bg-[var(--color-dark)] text-white/60">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 mb-12">
           <div className="col-span-2 sm:col-span-1">
-            <Link href="/" className="font-[family-name:var(--font-instrument-serif)] text-2xl tracking-tight">
-              Chain<span className="text-[var(--color-accent)]">Line</span>
-            </Link>
-            <p className="mt-3 text-[13px] leading-relaxed max-w-[240px]" style={{ color: "rgba(245,240,235,0.35)" }}>
-              Rider-owned since 2009. Kelowna&apos;s bike shop.
-            </p>
+            <Link href="/" className="font-[family-name:var(--font-instrument-serif)] text-xl text-white">Chain<span className="text-[var(--color-accent)]">Line</span></Link>
+            <p className="mt-3 text-[13px] leading-relaxed text-white/40">Rider-owned since 2009.<br />1139 Ellis St, Kelowna, BC</p>
           </div>
           {[
-            { title: "Shop", links: [{ label: "All Bikes", href: "/bikes" }, { label: "Sale", href: "/sale" }, { label: "Used Bikes", href: "/used-bikes" }, { label: "Trade-In", href: "/trade-in" }] },
-            { title: "Service", links: [{ label: "Full Menu", href: "/service" }, { label: "Bike Fit", href: "/service" }, { label: "Trail Guide", href: "/trails" }] },
-            { title: "Info", links: [{ label: "About", href: "/about" }, { label: "Contact", href: "/contact" }, { label: "Instagram", href: "https://www.instagram.com/chainline_cycle_kelowna/" }] },
+            { title: "Shop", links: [["All Bikes", "/bikes/"], ["Sale", "/sale/"], ["Used Bikes", "/used-bikes/"], ["Trade-In", "/trade-in/"]] },
+            { title: "Service", links: [["Service Menu", "/service/"], ["Trail Guide", "/trails/"], ["About Us", "/about/"], ["Contact", "/contact/"]] },
+            { title: "Contact", links: [["(250) 860-1968", "tel:2508601968"], ["bikes@chainline.ca", "mailto:bikes@chainline.ca"], ["Instagram", "https://instagram.com/chainline_cycle_kelowna/"]] },
           ].map((col) => (
             <div key={col.title}>
-              <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-[var(--color-accent)] mb-4">{col.title}</p>
+              <h3 className="text-[11px] font-semibold uppercase tracking-wider text-white/80 mb-4">{col.title}</h3>
               <ul className="space-y-2.5">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <Link href={link.href} className="text-[13px] transition-colors hover:text-[var(--color-fg)]" style={{ color: "rgba(245,240,235,0.35)" }}>{link.label}</Link>
-                  </li>
+                {col.links.map(([label, href]) => (
+                  <li key={label}><Link href={href} className="text-[13px] text-white/40 hover:text-white transition-colors">{label}</Link></li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-6" style={{ borderTop: "1px solid rgba(245,240,235,0.04)" }}>
-          <p className="text-[11px]" style={{ color: "rgba(245,240,235,0.2)" }}>&copy; {new Date().getFullYear()} ChainLine Cycle &middot; 1139 Ellis St, Kelowna, BC</p>
-          <p className="text-[11px]" style={{ color: "rgba(245,240,235,0.15)" }}>(250) 860-1968 &middot; bikes@chainline.ca</p>
+        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-2">
+          <p className="text-[11px] text-white/25">&copy; {new Date().getFullYear()} ChainLine Cycle</p>
+          <p className="text-[11px] text-white/25">Mon 10-5 &middot; Tue-Fri 9:30-5:30 &middot; Sat 10-4</p>
         </div>
       </div>
     </footer>

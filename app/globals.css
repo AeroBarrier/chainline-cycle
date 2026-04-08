@@ -1,64 +1,27 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg: #060606;
-  --color-fg: #F5F0EB;
-  --color-accent: #C8965A;
-  --color-accent-light: #E4BF8A;
-  --color-success: #4CAF50;
-  --color-surface-1: rgba(245, 240, 235, 0.015);
-  --color-surface-2: rgba(245, 240, 235, 0.04);
-  --color-surface-3: rgba(245, 240, 235, 0.07);
-  --color-border: rgba(245, 240, 235, 0.06);
-  --color-border-hover: rgba(245, 240, 235, 0.12);
-  --color-muted: rgba(245, 240, 235, 0.4);
+  --color-bg: #FAFAF8;
+  --color-fg: #1A1A1A;
+  --color-accent: #B8860B;
+  --color-accent-hover: #9A7209;
+  --color-muted: #6B6B6B;
+  --color-light: #F0EFED;
+  --color-border: #E5E4E1;
+  --color-dark: #111111;
   --font-display: var(--font-instrument-serif);
   --font-body: var(--font-dm-sans);
   --font-mono: var(--font-jetbrains-mono);
 }
 
-html {
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(200,150,90,0.2) transparent;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--color-bg);
   color: var(--color-fg);
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: rgba(200, 150, 90, 0.25);
-  color: var(--color-fg);
-}
-
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(200,150,90,0.15); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(200,150,90,0.3); }
-
-/* Smooth image rendering */
-img { image-rendering: -webkit-optimize-contrast; }
-
-/* Grain overlay */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.018;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px;
-}
-
-/* Custom cursor for interactive elements */
-a, button, [role="button"] { cursor: pointer; }
-
-/* Focus styles */
-:focus-visible {
-  outline: 1px solid var(--color-accent);
-  outline-offset: 2px;
+  background: rgba(184, 134, 11, 0.15);
 }
