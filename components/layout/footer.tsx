@@ -11,7 +11,7 @@ export function Footer() {
           </div>
           {[
             { title: "Shop", links: [["All Bikes", "/bikes/"], ["Sale", "/sale/"], ["Used Bikes", "/used-bikes/"], ["Trade-In", "/trade-in/"]] },
-            { title: "Service", links: [["Service Menu", "/service/"], ["Trail Guide", "/trails/"], ["About", "/about/"], ["Contact", "/contact/"]] },
+            { title: "Service", links: [["Service Menu", "/service/"], ["Rides & Events", "/rides/"], ["About", "/about/"], ["Contact", "/contact/"]] },
             { title: "Contact", links: [["250.860.1968", "tel:2508601968"], ["bikes@chainline.ca", "mailto:bikes@chainline.ca"], ["Instagram", "https://instagram.com/chainline_cycle_kelowna/"]] },
           ].map((col) => (
             <div key={col.title}>

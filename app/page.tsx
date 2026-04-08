@@ -87,8 +87,8 @@ export default function HomePage() {
             <motion.div key={cat.slug} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}>
               <Link href={`/bikes/?d=${cat.slug}`} className="group block rounded-xl overflow-hidden" style={{ background: cat.color }}>
                 <div className="relative aspect-[3/4]">
-                  <Image src={cat.image} alt={cat.name} fill className="object-contain p-6 transition-transform duration-500 group-hover:scale-[1.04]" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <Image src={cat.image} alt={cat.name} fill className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-5">
                     <h3 className="font-[family-name:var(--font-playfair-display)] text-xl text-white mb-0.5">{cat.name}</h3>
                     <p className="font-[family-name:var(--font-space-mono)] text-[10px] text-white/50 uppercase tracking-wider">
@@ -132,7 +132,7 @@ export default function HomePage() {
 
       {/* ── FULL-BLEED IMAGE BREAK ── */}
       <motion.section initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1 }} className="relative h-[40vh] min-h-[300px] overflow-hidden">
-        <Image src="/images/shop/fat-bike-winter.jpg" alt="Winter riding in the Okanagan" fill className="object-cover" />
+        <Image src="/images/shop/shop-exterior.jpg" alt="ChainLine Cycle, Kelowna" fill className="object-cover" />
       </motion.section>
 
       {/* ── MOUNTAIN BIKES ── */}
