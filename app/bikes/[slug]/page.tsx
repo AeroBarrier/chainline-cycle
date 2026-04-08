@@ -49,7 +49,7 @@ export default async function BikePDP({ params }: { params: Promise<{ slug: stri
                 <span className="font-[family-name:var(--font-space-mono)] text-[28px] font-bold">${bike.price.toLocaleString()}</span>
               )}
             </div>
-            <p className="font-[family-name:var(--font-space-mono)] text-[11px] text-[var(--color-muted)] mb-6">or {formatFinancing(bike.salePrice || bike.price)}/mo with Affirm</p>
+            <p className="font-[family-name:var(--font-space-mono)] text-[11px] text-[var(--color-muted)] mb-6">or {formatFinancing(bike.salePrice || bike.price)} with Affirm</p>
 
             <p className="text-[15px] text-[var(--color-muted)] leading-relaxed font-light mb-6">{bike.description}</p>
 

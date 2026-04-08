@@ -92,7 +92,7 @@ export default function HomePage() {
                   <div className="absolute bottom-0 left-0 right-0 p-5">
                     <h3 className="font-[family-name:var(--font-playfair-display)] text-xl text-white mb-0.5">{cat.name}</h3>
                     <p className="font-[family-name:var(--font-space-mono)] text-[10px] text-white/50 uppercase tracking-wider">
-                      {bikes.filter(b => b.discipline === cat.slug).length} bikes
+                      {bikes.filter(b => b.discipline === cat.slug).length} {bikes.filter(b => b.discipline === cat.slug).length === 1 ? "bike" : "bikes"}
                     </p>
                   </div>
                 </div>

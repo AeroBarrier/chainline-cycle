@@ -35,7 +35,7 @@ export function BikeCard({ bike, index = 0 }: { bike: Bike; index?: number }) {
             <span className="font-[family-name:var(--font-space-mono)] text-[15px] font-bold text-[var(--color-fg)]">${bike.price.toLocaleString()}</span>
           )}
         </div>
-        <p className="font-[family-name:var(--font-space-mono)] text-[10px] text-[var(--color-muted)] mt-0.5">or {formatFinancing(bike.salePrice || bike.price)}/mo</p>
+        <p className="font-[family-name:var(--font-space-mono)] text-[10px] text-[var(--color-muted)] mt-0.5">or {formatFinancing(bike.salePrice || bike.price)}</p>
       </Link>
     </motion.div>
   );

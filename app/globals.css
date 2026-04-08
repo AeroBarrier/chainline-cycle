@@ -2,13 +2,13 @@
 
 @theme inline {
   --color-bg: #F7F5F0;
-  --color-fg: #1C1C1A;
+  --color-fg: #1A1A18;
   --color-accent: #8B7355;
   --color-accent-hover: #6E5A42;
   --color-hero-bg: #1C1C1A;
-  --color-muted: #8A8880;
+  --color-muted: #5C5A55;
   --color-surface: #EFECE6;
-  --color-border: #DDD9D0;
+  --color-border: #D5D2CA;
   --color-success: #4A7C59;
   --color-sale: #B44A3F;
   --font-display: var(--font-playfair-display);
@@ -24,6 +24,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-::selection {
-  background: rgba(139, 115, 85, 0.15);
+::selection { background: rgba(139, 115, 85, 0.15); }
+
+/* Form defaults for visibility */
+input, select, textarea {
+  color: var(--color-fg);
+}
+input::placeholder, textarea::placeholder {
+  color: var(--color-muted);
+  opacity: 0.7;
 }
